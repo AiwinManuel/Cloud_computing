@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app1:
+    container_name: app1
+    image: aiwinmanuel/dockerassignmentwinter:app1
+    build: ./app1
+    ports:
+      - "6000:6000"
+    volumes:
+      - .:/data  
+    depends_on:
+      - app2
+    networks:
+      - app-network
+
+  app2:
+    container_name: app2
+    image: aiwinmanuel/dockerassignmentwinter:app2
+    build: ./app2
+    ports:
+      - "6002:6002"
+    volumes:
+      - .:/data 
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
