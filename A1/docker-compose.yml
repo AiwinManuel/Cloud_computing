@@ -4,7 +4,6 @@ services:
   app1:
     container_name: app1
     image: aiwinmanuel/dockerassignmentwinter:app1
-    build: ./app1
     ports:
       - "6000:6000"
     volumes:
@@ -17,7 +16,6 @@ services:
   app2:
     container_name: app2
     image: aiwinmanuel/dockerassignmentwinter:app2
-    build: ./app2
     ports:
       - "6002:6002"
     volumes:
