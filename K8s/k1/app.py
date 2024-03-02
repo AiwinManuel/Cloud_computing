@@ -32,7 +32,7 @@ def verification():
     return data_fetching(file_path, data.get('product'))
 
 def data_fetching(file_path, product):
-    url = "http://app2-service:6002/calculate"  # Adjust the URL as per your setup
+    url = "http://my-service-app2:80/calculate"  
     data = {"file": os.path.basename(file_path), "product": product}
     response = requests.post(url, json=data)
     return response.json()
