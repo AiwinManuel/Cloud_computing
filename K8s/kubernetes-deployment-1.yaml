@@ -27,7 +27,7 @@ spec:
     spec:   
       containers:
         - name: k1
-          image: 'us-central1-docker.pkg.dev/disco-arcana-394001/kube1/k1:latest'
+          image: ':latest'
           imagePullPolicy: Always
           ports:
             - containerPort: 80
