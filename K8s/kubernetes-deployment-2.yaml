@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service-k2
+spec:
+  selector:
+    app: my-deployment-k2
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment-k2
+spec:
+  selector:
+    matchLabels:
+      app: my-deployment-k2
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: my-deployment-k2
+    spec:
+      containers:
+        - name: k2
+          image: 'us-central1-docker.pkg.dev/disco-arcana-394001/kube1/k2:latest'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: "/aiwin_PV_dir"
+              name: pod2pv1
+      volumes:
+        - name: pod2pv1
+          persistentVolumeClaim:
+            claimName: claim2 

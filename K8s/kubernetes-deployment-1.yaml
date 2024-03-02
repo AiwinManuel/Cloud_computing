@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service-k1
+spec:
+  selector:
+    app: my-deployment-k1
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment-k1
+spec:
+  selector:
+    matchLabels:
+      app: my-deployment-k1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: my-deployment-k1
+    spec:   
+      containers:
+        - name: k1
+          image: 'us-central1-docker.pkg.dev/disco-arcana-394001/kube1/k1:latest'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: "/aiwin_PV_dir"
+              name: podpv1
+      volumes:
+        - name: podpv1
+          persistentVolumeClaim:
+            claimName: claim2 
