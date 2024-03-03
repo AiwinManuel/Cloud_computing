@@ -1,7 +1,7 @@
 steps:
   # Step 1: Build the first Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/kubernetes-cloud-416022/k8s/k1:latest', './k8s/k1']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/kubernetes-cloud-416022/k8s/k1:latest', './K8s/k1']
 
   # Step 2: Push the first Docker image to Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -9,7 +9,7 @@ steps:
 
   # Step 4: Build the second Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/kubernetes-cloud-416022/k8s/k2:latest', './k2']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/kubernetes-cloud-416022/k8s/k2:latest', './K8s/k2']
 
   # Step 5: Push the second Docker image to Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
