@@ -22,11 +22,11 @@ steps:
     args:
       - 'apply'
       - '-f'
-      - 'pv.yaml' 
+      - 'K8s/pv.yaml' 
       - '-f'
-      - 'kubernetes-deployment-1.yaml'  
+      - 'K8s/kubernetes-deployment-1.yaml'  
       - '-f'
-      - 'kubernetes-deployment-2.yaml'
+      - 'K8s/kubernetes-deployment-2.yaml'
     env:
       - TAGVALUE=$COMMIT_SHA
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
