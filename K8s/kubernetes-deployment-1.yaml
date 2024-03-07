@@ -27,7 +27,7 @@ spec:
     spec:   
       containers:
         - name: k1
-          # image: ':latest'
+          image: 'latest'
           imagePullPolicy: Always
           ports:
             - containerPort: 80
