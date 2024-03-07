@@ -27,7 +27,7 @@ spec:
     spec:   
       containers:
         - name: k1
-          image: 'latest'
+          image: 'us-central1-docker.pkg.dev/kubernetes-cloud-416022/k8s/k1:latest'
           imagePullPolicy: Always
           ports:
             - containerPort: 80
