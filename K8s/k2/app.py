@@ -10,7 +10,7 @@ def get_data():
         request_data = request.get_json()
 
         filename = request_data.get("file")
-        product_name = request_data.get("product")
+        product_name = request_data.get("product") 
         if filename is None or product_name is None:
             return jsonify({'file': filename, 'error': 'Invalid JSON input.'}), 400
         
