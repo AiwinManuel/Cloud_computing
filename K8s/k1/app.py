@@ -3,7 +3,7 @@ import os
 import requests
 
 app = Flask(__name__)
-DATA_DIR = "/aiwin_PV_dir"   
+DATA_DIR = "/aiwin_PV_dir"           
 
 
 @app.route('/start', methods=['GET'])
