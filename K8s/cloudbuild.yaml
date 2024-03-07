@@ -17,7 +17,7 @@ steps:
   # Step 4: Set the necessary environment variables for kubectl
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['container', 'clusters', 'get-credentials', 'kube1', '--zone=us-central1-c']
-  # Step 5: Creating PVC and deploying the images ion GKE 
+  # Step 5: Creating PVC and deploying the images ion GKE
   - name: 'gcr.io/cloud-builders/kubectl'
     args:
       - 'apply'
