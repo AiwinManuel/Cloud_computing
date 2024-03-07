@@ -19,15 +19,25 @@ def get_data():
 
 def calculate_sum(file_path, product):
     try:
-        with open(file_path, 'r') as dat_file:
+        with open(file_path, mode='r', newline='') as dat_file:
             file_data = csv.DictReader(dat_file)
             total_sum = 0
+            product_found = False
             for row in file_data:
-                if row['product'] == product:
-                    total_sum += int(row['amount'])
+                if row.get('product') == product:
+                    try:
+                        total_sum += int(row.get('amount', 0))
+                        product_found = True
+                    except ValueError:
+                        # Handle the case where 'amount' is not an integer
+                        return jsonify({"file": os.path.basename(file_path), "error": "Invalid amount value."})
+            if not product_found:
+                # Product was not found in the file
+                return jsonify({"file": os.path.basename(file_path), "error": f"Product '{product}' not found."})
             return jsonify({"file": os.path.basename(file_path), "sum": total_sum})
     except Exception as e:
-        return jsonify({"file": os.path.basename(file_path), "error": "Input file not in CSV format."})
+        # This captures any other exception, including issues opening the file
+        return jsonify({"file": os.path.basename(file_path), "error": f"Error processing file: {str(e)}"})
 
 # if __name__ == '__main__':
 #     app.run(host='0.0.0.0', port=6002)
