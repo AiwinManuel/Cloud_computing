@@ -3,7 +3,7 @@ import csv
 import os
 
 app = Flask(__name__)
-DATA_DIR = "/aiwin_PV_dir"  
+DATA_DIR = "/aiwin_PV_dir/"  
 
 @app.route('/calculate', methods=['POST'])
 def get_data():
