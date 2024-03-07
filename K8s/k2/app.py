@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 import os
 
 app = Flask(__name__)
-DATA_DIR = "/aiwin_PV_dir/"  
+DATA_DIR = "/aiwin_PV_dir/"
 
 @app.route('/calculate', methods=['POST'])
 def get_data():
@@ -11,9 +11,8 @@ def get_data():
 
         filename = request_data.get("file")
         product_name = request_data.get("product")
-
         if filename is None or product_name is None:
-            return jsonify({'file': None, 'error': 'Invalid JSON input.'}), 400
+            return jsonify({'file': filename, 'error': 'Invalid JSON input.'}), 400
 
         file_path = os.path.join(DATA_DIR, filename)
         try:
@@ -30,11 +29,10 @@ def get_data():
                 total_sum = 0
                 for line in lines[1:]:
                     data = [item.strip() for item in line.split(',')]
-                    if data and data[0] == product_name:  # Ensure data is not empty and matches the product
+                    if data and data[product_index] == product_name:
                         try:
                             total_sum += int(data[amount_index])
                         except ValueError:
-                            # Handles the case where the amount is not an integer
                             return jsonify({'file': filename, 'error': 'Invalid amount value in CSV.'}), 400
 
                 return jsonify({'file': filename, 'sum': total_sum}), 200
@@ -44,6 +42,6 @@ def get_data():
 
     except Exception as e:
         return jsonify({'file': None, 'error': 'Invalid JSON input.'}), 400
-
+    
 # if __name__ == '__main__':
 #     app.run(host='0.0.0.0', port=6002)
