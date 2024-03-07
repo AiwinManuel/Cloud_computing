@@ -1,19 +1,19 @@
 steps:
   # Step 0: Build the first Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/kubernetes-cloud-416022/k8s/k1:latest', './K8s/k1']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/kubernetes-cloud-416022/k8s/k1', './K8s/k1']
 
   # Step 1: Push the first Docker image to Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/kubernetes-cloud-416022/k8s/k1:latest']
+    args: ['push', 'us-central1-docker.pkg.dev/kubernetes-cloud-416022/k8s/k1']
 
   # Step 2: Build the second Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/kubernetes-cloud-416022/k8s/k2:latest', './K8s/k2']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/kubernetes-cloud-416022/k8s/k2', './K8s/k2']
 
   # Step 3: Push the second Docker image to Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/kubernetes-cloud-416022/k8s/k2:latest']
+    args: ['push', 'us-central1-docker.pkg.dev/kubernetes-cloud-416022/k8s/k2']
   # Step 4: Set the necessary environment variables for kubectl
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['container', 'clusters', 'get-credentials', 'kube1', '--zone=us-central1-c']
