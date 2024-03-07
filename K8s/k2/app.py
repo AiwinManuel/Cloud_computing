@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from flask import Flask, request, jsonify
 import os
 
@@ -13,6 +14,9 @@ def get_data():
         product_name = request_data.get("product") if request_data else None
 
         if filename is None or product_name is None:
+            return jsonify({'file': filename, 'error': 'Invalid JSON input.'}), 400
+        
+        if filename == NULL:
             return jsonify({'file': filename, 'error': 'Invalid JSON input.'}), 400
 
         file_path = os.path.join(DATA_DIR, filename)
