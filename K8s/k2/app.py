@@ -13,6 +13,10 @@ def get_data():
         product_name = request_data.get("product")
         if filename is None or product_name is None:
             return jsonify({'file': filename, 'error': 'Invalid JSON input.'}), 400
+        
+        data = request.get_json()
+        if not data or 'file' not in data or 'data' not in data:
+            return jsonify({"file": None, "error": "Invalid JSON input."})
 
         file_path = os.path.join(DATA_DIR, filename)
         try:
