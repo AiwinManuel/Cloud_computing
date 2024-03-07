@@ -9,21 +9,18 @@ def get_data():
     try:
         request_data = request.get_json()
 
-        filename = request_data.get("file")
-        product_name = request_data.get("product") 
+        filename = request_data.get("file") if request_data else None
+        product_name = request_data.get("product") if request_data else None
+
         if filename is None or product_name is None:
             return jsonify({'file': filename, 'error': 'Invalid JSON input.'}), 400
-        
-        data = request.get_json()
-        if not data or 'file' not in data or 'data' not in data:
-            return jsonify({"file": None, "error": "Invalid JSON input."})
 
         file_path = os.path.join(DATA_DIR, filename)
         try:
             with open(file_path, 'r') as file:
                 lines = file.read().split('\n')
                 header = [item.strip() for item in lines[0].split(',')]
-                
+
                 if "product" not in header or "amount" not in header:
                     return jsonify({'file': filename, 'error': 'Input file not in CSV format.'}), 400
 
@@ -33,7 +30,7 @@ def get_data():
                 total_sum = 0
                 for line in lines[1:]:
                     data = [item.strip() for item in line.split(',')]
-                    if data and data[product_index] == product_name:
+                    if data and data[product_index] == product_name:  
                         try:
                             total_sum += int(data[amount_index])
                         except ValueError:
@@ -43,9 +40,12 @@ def get_data():
 
         except FileNotFoundError:
             return jsonify({'file': filename, 'error': 'File not found.'}), 404
+        except Exception as e:
+            return jsonify({'file': filename, 'error': 'Input file not in CSV format.'}), 400
 
     except Exception as e:
         return jsonify({'file': None, 'error': 'Invalid JSON input.'}), 400
+
     
 # if __name__ == '__main__':
 #     app.run(host='0.0.0.0', port=6002)
