@@ -5,6 +5,16 @@ import requests
 app = Flask(__name__)
 DATA_DIR = "/aiwin_PV_dir"  
 
+
+@app.route('/start', methods=['GET'])
+
+ 
+
+def test_ip_function():
+
+    return "hello"
+
+
 @app.route('/store-file', methods=['POST'])
 def store_file():
     data = request.get_json()
