@@ -5,8 +5,8 @@ import os
 app = Flask(__name__)
 @app.route('/calculate', methods=['POST'])
 def get_data():
+    #getting details from json
     data = request.get_json()
-    # fetching file name
     name = data.get('file')
     product = data.get('product')
     path = os.path.join('/data', name)
