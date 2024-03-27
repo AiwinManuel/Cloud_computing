@@ -22,7 +22,6 @@ phases:
   post_build:
     commands:
       - echo "Zipping the application including node_modules..."
-      - cd Term_Project/Gallery
       - zip -r my-react-app.zip . -x ".*" "*/*.log"
       - echo "Artifact zip created."
 
