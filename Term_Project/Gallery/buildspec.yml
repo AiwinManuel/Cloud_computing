@@ -27,18 +27,17 @@ phases:
 
 artifacts:
   files:
-    # # - Procfile
-    # # - public/*
-    # # - server.js
-    # # - build/*
-    # # - dist/*
-    # # - src/*
-    # # - app.jsx
-    # # - index.html
-    # # - package.json
-    # # - package-lock.json
-    # # - vite.config.js
-    # # - node_modules/*       
-    # - '**/*'
-    - my-react-app.zip
+    # - Procfile
+    # - public/*
+    # - server.js
+    # - build/*
+    # - dist/*
+    # - src/*
+    # - app.jsx
+    # - index.html
+    # - package.json
+    # - package-lock.json
+    # - vite.config.js
+    # - node_modules/*       
+    - '**/*'
   discard-paths: yes
