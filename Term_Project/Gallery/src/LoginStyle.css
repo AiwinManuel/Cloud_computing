@@ -1,0 +1,85 @@
+/* Adjust the background of the whole page */
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Center the card horizontally and vertically */
+  .page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #f8f9fa; /* This color should match the light background of your screenshot */
+  }
+  
+  /* Style the card containing the form */
+  .card-container {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
+  }
+  
+  /* Style the image part */
+  .card-left-col {
+    background: url('your-image-path.jpg') center no-repeat; /* Replace with your actual image path */
+    background-size: cover;
+  }
+  
+  /* Style the form part */
+  .card-right-col {
+    background-color: #fff;
+    padding: 2rem;
+  }
+  
+  /* Style the logo */
+  .logo {
+    color: #ff6219; /* Color for the logo icon */
+    margin-bottom: 2rem; /* Space below the logo */
+  }
+  
+  /* Style the form heading */
+  .login-heading {
+    margin-bottom: 2rem;
+    color: #333; /* Dark grey color for text */
+  }
+  
+  /* Style the form inputs */
+  input {
+    margin-bottom: 1rem;
+  }
+  
+  /* Style the login button */
+  .login-btn {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem; /* Spacing below the button */
+    background-color: #000; /* Black color button */
+    color: white;
+  }
+  
+  /* Links below the form */
+  .form-text-links {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .form-text-links a {
+    color: #393f81;
+    text-decoration: none;
+  }
+  
+  /* Legal text at the bottom */
+  .legal-text {
+    text-align: center;
+    margin-top: 4rem;
+    font-size: 0.875rem;
+  }
+  
+  @media (max-width: 768px) {
+    /* On smaller screens, the card takes up more space and the image may hide */
+    .card-left-col {
+      display: none;
+    }
+  }
+  
