@@ -22,7 +22,7 @@ phases:
   post_build:
     commands:
       - echo "Zipping the application including node_modules..."
-      - zip -r my-react-app.zip . -x ".*" "*/*.log"
+      - zip -r ../../my-react-app.zip .
       - echo "Artifact zip created."
 
 artifacts:
@@ -31,8 +31,9 @@ artifacts:
     # - public/*
     # - server.js
     # - build/*
+    # - dist/*
     # - src/*
-    # - app.js
+    # - app.jsx
     # - index.html
     # - package.json
     # - package-lock.json
