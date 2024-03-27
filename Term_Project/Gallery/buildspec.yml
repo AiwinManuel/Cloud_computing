@@ -38,6 +38,6 @@ artifacts:
     # - package.json
     # - package-lock.json
     # - vite.config.js
-    # - node_modules/*       
+    # - node_modules/*                   
     - '**/*'
   discard-paths: yes
