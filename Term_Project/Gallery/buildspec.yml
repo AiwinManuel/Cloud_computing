@@ -32,7 +32,7 @@ artifacts:
     # - server.js
     # - build/*
     # - dist/*
-    # - src/*
+    # - src/*          
     # - app.jsx
     # - index.html
     # - package.json
