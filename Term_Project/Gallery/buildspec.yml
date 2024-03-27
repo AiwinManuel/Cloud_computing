@@ -42,4 +42,3 @@ artifacts:
     # - '**/*'
     - my-react-app.zip
   discard-paths: yes
-  base-directory: Term_Project/Gallery/dist
