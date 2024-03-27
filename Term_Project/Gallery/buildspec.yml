@@ -22,7 +22,7 @@ phases:
   post_build:
     commands:
       - echo "Zipping the application including node_modules..."
-      - zip -r ../../my-react-app.zip .
+      # - zip -r ../../my-react-app.zip .
       - echo "Artifact zip created."
 
 artifacts:
@@ -38,6 +38,5 @@ artifacts:
     - package-lock.json
     - vite.config.js
     - node_modules/*  
-    # -                  
     # - '**/*'
   discard-paths: yes
