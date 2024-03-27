@@ -1,6 +1,5 @@
 import React, { useState, useEffect , useRef } from 'react';
 import LightGallery from 'lightgallery/react';
-import { useDropzone } from 'react-dropzone';
 
 // import styles
 import 'lightgallery/css/lightgallery.css';
