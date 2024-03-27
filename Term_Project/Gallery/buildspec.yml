@@ -39,5 +39,5 @@ artifacts:
     - package-lock.json
     - vite.config.js
     - node_modules/*  
-    # - '**/*'        
+    # - '**/*'                          
   discard-paths: no
