@@ -1,0 +1,40 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - echo "Installing source NPM dependencies..."
+      - npm install
+      
+  pre_build:
+    commands:
+      - echo "Running tests..."
+  build:
+    commands:
+      - echo "Building the React app..."
+      - npm run dev
+
+  post_build:
+    commands:
+      - echo "Zipping the application including node_modules..."
+      # This command zips all files and folders from the project root, including node_modules 
+      - zip -r my-react-app.zip . -x ".*" "*/*.log"
+      - echo "Artifact zip created."
+
+artifacts:
+  files:
+    # - Procfile
+    # - public/*
+    # - server.js
+    # - build/*
+    # - src/*
+    # - app.js
+    # - index.html
+    # - package.json
+    # - package-lock.json
+    # - vite.config.js
+    # - node_modules/*
+    - '**/*'
+  discard-paths: no
