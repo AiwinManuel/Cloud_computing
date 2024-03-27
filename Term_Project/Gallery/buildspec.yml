@@ -26,7 +26,7 @@ phases:
       - echo "Artifact zip created."
 
 artifacts:
-  base-directory: Term_Project/Gallery/dist
+  base-directory: Term_Project/Gallery
   files:
     - Procfile
     - public/*
