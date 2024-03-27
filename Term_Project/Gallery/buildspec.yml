@@ -26,6 +26,7 @@ phases:
       - echo "Artifact zip created."
 
 artifacts:
+  base-directory: Term_Project/Gallery/dist
   files:
     - Procfile
     - public/*
@@ -39,4 +40,4 @@ artifacts:
     - vite.config.js
     - node_modules/*  
     # - '**/*'
-  discard-paths: yes
+  discard-paths: no
