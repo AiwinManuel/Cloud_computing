@@ -6,12 +6,14 @@ phases:
       nodejs: 12
     commands:
       - echo "Installing source NPM dependencies..."
+      - cd Term_Project/Gallery
       - npm install
+
       
   pre_build:
     commands:
       - echo "Running tests..."
-      - cd Term_Project/Gallery
+
   build:
     commands:
       - echo "Building the React app..."
