@@ -39,6 +39,6 @@ artifacts:
     # # - package-lock.json
     # # - vite.config.js
     # # - node_modules/*       
-    # - '**/*'   
+    # - '**/*'
     - my-react-app.zip
   discard-paths: yes
