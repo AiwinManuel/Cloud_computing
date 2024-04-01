@@ -24,30 +24,29 @@ img:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px; /* Adds padding on both sides */
-    max-width: 1200px; /* Adjust based on your max content width */
+    padding: 0 20px; 
+    max-width: 1200px; 
     margin-right: 450px
 }
 
 .upload-button {
     background-color: ivory;
     border: none;
-    border-radius: 20px; /* Rounded corners */
+    border-radius: 20px; 
     padding: 10px 15px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 5px; /* Space between icon and text */
-}
+    gap: 5px; }
 
 .upload-button svg {
-    fill: #000; /* Icon color */
+    fill: #000; 
 }
 
 .gallery-heading {
     text-align: center;
     color: white;
-    margin: 0; /* Adjust as necessary */
+    margin: 0; 
 }
 
 .divider:after,

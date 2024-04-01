@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import Button from "./components/Button"; 
@@ -7,22 +7,54 @@ import './LoginStyle.css';
 
 
 
+
 function Login() {
+
   let navigate = useNavigate();
 
   // State for email and password
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [apiUrl, setApiUrl] = useState('');
+  
+  useEffect(() => {
+    // Fetch the API Gateway endpoint URL from your backend
+    fetch('https://mztju5l4yc.execute-api.us-east-1.amazonaws.com/Prod/test')
+      .then(response => response.json())
+      .then(data => {
+        const body = JSON.parse(data.body);
+        setApiUrl(body.ApiGatewayEndpoint);
+      })
+      .catch(error => console.error('Error fetching API URL:', error));
+  }, []);
+  
 
   // Hardcoded credentials for demonstration
-  const correctEmail = "aiwin@aiwin.com";
+  const correctEmail = "aiwinmanuel@gmail.com";
   const correctPassword = "aiwin";
 
-  const handleLogin = () => {
-    console.log(email,password);
-    // Simple credential check
+  const handleLogin = async () => {
+    console.log(email, password);
+        // Simple credential check
     if (email === correctEmail && password === correctPassword) {
-      navigate('/gallery');
+      try {
+        const response = await fetch(`${apiUrl}/login`, {
+          method: 'GET',
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        console.log(`${apiUrl}/login`);
+        console.log('Successfully triggered the login API');
+        navigate('/gallery');
+      } catch (error) {
+        console.error('Failed to trigger login API:', error);
+        alert('Login API call was unsuccessful');
+      }
     } else {
       alert('Incorrect credentials');
     }

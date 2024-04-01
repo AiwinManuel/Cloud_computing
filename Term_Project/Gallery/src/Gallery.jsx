@@ -22,33 +22,45 @@ import lgRotate from 'lightgallery/plugins/rotate';
 export function Gallery() {
     const [images, setImages] = useState([]);
     const fileInputRef = useRef(null);
+    const [apiUrl, setApiUrl] = useState('');
+
+
+    useEffect(() => {
+        fetch('https://mztju5l4yc.execute-api.us-east-1.amazonaws.com/Prod/test')
+          .then(response => response.json())
+          .then(data => {
+            const body = JSON.parse(data.body);
+            setApiUrl(body.ApiGatewayEndpoint);
+          })
+          .catch(error => console.error('Error fetching API URL:', error));
+      }, []);
 
     // Function to fetch images
     const fetchImages = async () => {
         try {
-            const response = await fetch('https://nktf9thuag.execute-api.us-east-1.amazonaws.com/deploy/getfiles');
+            const response = await fetch(`${apiUrl}/list`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             const data = await response.json();
-            if (data.body) {
-                const body = JSON.parse(data.body);
-                if (body.images) {
-                    // Assuming the structure { src: "url", alt: "description" } for each image
-                    const imageArray = body.images.map((src, index) => ({ src, alt: `Image number ${index + 1}` }));
-                    setImages(imageArray);
-                } else {
-                    throw new Error('No images key found in body');
-                }
+            if (data.images) {
+                const imageArray = data.images.map((src, index) => ({ src, alt: `Image number ${index + 1}` }));
+                setImages(imageArray);
             } else {
-                throw new Error('No body found in response');
+                throw new Error('No images found');
             }
         } catch (error) {
             console.error('Failed to fetch images:', error);
         }
     };
+    
 
     // Fetch images on mount
     useEffect(() => {
-        fetchImages();
-    }, []);
+        if (apiUrl) { 
+            fetchImages();
+        }
+    }, [apiUrl]);
 
     const handleUploadClick = () => {
         fileInputRef.current.click();
@@ -78,10 +90,10 @@ export function Gallery() {
     const uploadImage = async (base64, fileName) => {
         const body = JSON.stringify({
             fileName: fileName,
-            fileContent: base64.split(',')[1], // Remove the Base64 prefix
+            fileContent: base64.split(',')[1], 
         });
         try {
-            await fetch('https://nktf9thuag.execute-api.us-east-1.amazonaws.com/deploy/savefile', {
+            await fetch(`${apiUrl}/upload`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -99,7 +111,7 @@ export function Gallery() {
         <div className="App">
             <div className="header-container">
                 <button className="upload-button" onClick={handleUploadClick}>
-                    Upload {/* Your SVG or icon here */}
+                    Upload 
                 </button>
                 <h1 className="gallery-heading">Gallery</h1>
                 <input

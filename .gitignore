@@ -4,6 +4,8 @@
 Term_project/Gallery/node_modules
 Term_project/Gallery/node_modules/.pnp
 Term_project/Gallery/node_modules/.pnp.js
+Term_Project/Gallery/dist
+Term_Project/Gallery/.env
 
 # testing
 Term_project/Gallery/node_modules
@@ -11,7 +13,7 @@ Term_project/Gallery/node_modules
 
 # production
 Term_project/Gallery/node_modules
-/build
+Term_project/Gallery/build
 
 # misc
 .DS_Store
